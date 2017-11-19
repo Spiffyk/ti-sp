@@ -32,12 +32,14 @@ public enum State {
 		OPENING.transitionMap.put(Input.TRIGGER_UPPER, State.OPEN_LIGHT_ON);
 
 		STOPPED_WHILE_OPENING.transitionMap.put(Input.BUTTON, State.CLOSING);
+		STOPPED_WHILE_OPENING.transitionMap.put(Input.PHOTOCELL, State.OPENING);
 
 		CLOSING.transitionMap.put(Input.BUTTON, State.STOPPED_WHILE_CLOSING);
 		CLOSING.transitionMap.put(Input.TRIGGER_LOWER, State.CLOSED_LIGHT_ON);
 		CLOSING.transitionMap.put(Input.PHOTOCELL, State.OPENING);
 
 		STOPPED_WHILE_CLOSING.transitionMap.put(Input.BUTTON, State.OPENING);
+		STOPPED_WHILE_CLOSING.transitionMap.put(Input.PHOTOCELL, State.OPENING);
 
 		CLOSED_LIGHT_ON.transitionMap.put(Input.BUTTON, State.OPENING);
 		CLOSED_LIGHT_ON.transitionMap.put(Input.TIMER, State.CLOSED_LIGHT_OFF);
