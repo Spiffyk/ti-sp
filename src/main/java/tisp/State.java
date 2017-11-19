@@ -50,7 +50,7 @@ public enum State {
 	/**
 	 * A map of transitions for the state.
 	 */
-	private HashMap<Input, State> transitionMap;
+	private HashMap<Input, State> transitionMap = new HashMap<>();
 
 	/**
 	 * Gets the next state for the specified {@link Input}. If no following state is defined for the {@code Input},
