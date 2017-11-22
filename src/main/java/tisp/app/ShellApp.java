@@ -7,8 +7,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * Shell-based application class.
+ */
 public class ShellApp {
 
+	/**
+	 * Application entry point.
+	 *
+	 * @param args unused
+	 */
 	public static void main(String[] args) {
 		Garage garage = new Garage();
 		final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -73,6 +81,9 @@ public class ShellApp {
 		}
 	}
 
+	/**
+	 * Prints help into {@code stdout}.
+	 */
 	private static void printHelp() {
 		System.out.println(
 				"Only the first input character is used, input is case-insensitive.\n" +

@@ -22,6 +22,8 @@ public enum State {
 	CLOSED_LIGHT_OFF,
 	ERROR;
 
+
+
 	static {
 		OPEN_LIGHT_ON.transitionMap.put(Input.BUTTON, State.CLOSING);
 		OPEN_LIGHT_ON.transitionMap.put(Input.TIMER, State.OPEN_LIGHT_OFF);
@@ -49,6 +51,8 @@ public enum State {
 
 		CLOSED_LIGHT_OFF.transitionMap.put(Input.BUTTON, State.OPENING);
 	}
+
+
 
 	/**
 	 * A map of transitions for the state.
