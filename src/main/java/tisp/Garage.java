@@ -9,6 +9,10 @@ public class Garage {
 	@Getter
 	private State currentState;
 
+	public Garage() {
+		this(State.CLOSED_LIGHT_OFF);
+	}
+
 	public Garage(@NonNull final State initialState) {
 		this.currentState = initialState;
 	}
