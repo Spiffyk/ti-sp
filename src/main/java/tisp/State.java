@@ -25,11 +25,14 @@ public enum State {
 	static {
 		OPEN_LIGHT_ON.transitionMap.put(Input.BUTTON, State.CLOSING);
 		OPEN_LIGHT_ON.transitionMap.put(Input.TIMER, State.OPEN_LIGHT_OFF);
+		OPEN_LIGHT_ON.transitionMap.put(Input.PHOTOCELL, State.OPEN_LIGHT_ON);
 
 		OPEN_LIGHT_OFF.transitionMap.put(Input.BUTTON, State.CLOSING);
+		OPEN_LIGHT_OFF.transitionMap.put(Input.PHOTOCELL, State.OPEN_LIGHT_OFF);
 
 		OPENING.transitionMap.put(Input.BUTTON, State.STOPPED_WHILE_OPENING);
 		OPENING.transitionMap.put(Input.TRIGGER_UPPER, State.OPEN_LIGHT_ON);
+		OPENING.transitionMap.put(Input.PHOTOCELL, State.OPENING);
 
 		STOPPED_WHILE_OPENING.transitionMap.put(Input.BUTTON, State.CLOSING);
 		STOPPED_WHILE_OPENING.transitionMap.put(Input.PHOTOCELL, State.OPENING);
