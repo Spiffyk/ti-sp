@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
 public class ShellApp {
 
 	public static void main(String[] args) {
-		final Garage garage = new Garage();
+		Garage garage = new Garage();
 		final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		System.out.println("Type '?' and <ENTER> to show help");
@@ -45,6 +45,10 @@ public class ShellApp {
 					case 'P':
 						input = Input.PHOTOCELL;
 						break;
+					case 'R':
+						System.out.println("Resetting the garage.");
+						garage = new Garage();
+						continue;
 					case 'X':
 						exitRequested = true;
 						break;
@@ -71,7 +75,7 @@ public class ShellApp {
 
 	private static void printHelp() {
 		System.out.println(
-				"Only the first input character is used, case-insensitive.\n" +
+				"Only the first input character is used, input is case-insensitive.\n" +
 				"\n" +
 				"Possible options:\n" +
 				"\n" +
@@ -80,6 +84,8 @@ public class ShellApp {
 				"L - TRIGGER_LOWER input\n" +
 				"T - TIMER input\n" +
 				"P - PHOTOCELL input\n" +
+				"\n" +
+				"R - resets the garage" +
 				"X - exits the application\n" +
 				"? - shows help\n"
 		);
