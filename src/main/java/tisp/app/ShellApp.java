@@ -1,13 +1,16 @@
-package tisp;
+package tisp.app;
+
+import tisp.Garage;
+import tisp.Input;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class GarageApp {
+public class ShellApp {
 
 	public static void main(String[] args) {
-		final Garage garage = new Garage(State.CLOSED_LIGHT_OFF);
+		final Garage garage = new Garage();
 		final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		System.out.println("Type '?' and <ENTER> to show help");
