@@ -19,37 +19,33 @@ public enum State {
 	CLOSING,
 	STOPPED_WHILE_CLOSING,
 	CLOSED_LIGHT_ON,
-	CLOSED_LIGHT_OFF,
-	ERROR;
+	CLOSED_LIGHT_OFF;
 
 
 
 	static {
-		OPEN_LIGHT_ON.transitionMap.put(Input.BUTTON, State.CLOSING);
-		OPEN_LIGHT_ON.transitionMap.put(Input.TIMER, State.OPEN_LIGHT_OFF);
-		OPEN_LIGHT_ON.transitionMap.put(Input.PHOTOCELL, State.OPEN_LIGHT_ON);
+		OPEN_LIGHT_ON.transitionMap.put(Input.BUTTON, new Transition(State.CLOSING, Signal.MOTOR_START_CLOSING));
+		OPEN_LIGHT_ON.transitionMap.put(Input.TIMER, new Transition(State.OPEN_LIGHT_OFF, Signal.LIGHT_OFF));
 
-		OPEN_LIGHT_OFF.transitionMap.put(Input.BUTTON, State.CLOSING);
-		OPEN_LIGHT_OFF.transitionMap.put(Input.PHOTOCELL, State.OPEN_LIGHT_OFF);
+		OPEN_LIGHT_OFF.transitionMap.put(Input.BUTTON, new Transition(State.CLOSING, Signal.MOTOR_START_CLOSING, Signal.LIGHT_ON));
 
-		OPENING.transitionMap.put(Input.BUTTON, State.STOPPED_WHILE_OPENING);
-		OPENING.transitionMap.put(Input.TRIGGER_UPPER, State.OPEN_LIGHT_ON);
-		OPENING.transitionMap.put(Input.PHOTOCELL, State.OPENING);
+		OPENING.transitionMap.put(Input.BUTTON, new Transition(State.STOPPED_WHILE_OPENING, Signal.MOTOR_STOP));
+		OPENING.transitionMap.put(Input.TRIGGER_UPPER, new Transition(State.OPEN_LIGHT_ON, Signal.MOTOR_STOP));
 
-		STOPPED_WHILE_OPENING.transitionMap.put(Input.BUTTON, State.CLOSING);
-		STOPPED_WHILE_OPENING.transitionMap.put(Input.PHOTOCELL, State.OPENING);
+		STOPPED_WHILE_OPENING.transitionMap.put(Input.BUTTON, new Transition(State.CLOSING, Signal.MOTOR_START_CLOSING));
+		STOPPED_WHILE_OPENING.transitionMap.put(Input.PHOTOCELL, new Transition(State.OPENING, Signal.MOTOR_START_OPENING));
 
-		CLOSING.transitionMap.put(Input.BUTTON, State.STOPPED_WHILE_CLOSING);
-		CLOSING.transitionMap.put(Input.TRIGGER_LOWER, State.CLOSED_LIGHT_ON);
-		CLOSING.transitionMap.put(Input.PHOTOCELL, State.OPENING);
+		CLOSING.transitionMap.put(Input.BUTTON, new Transition(State.STOPPED_WHILE_CLOSING, Signal.MOTOR_STOP));
+		CLOSING.transitionMap.put(Input.TRIGGER_LOWER, new Transition(State.CLOSED_LIGHT_ON, Signal.MOTOR_STOP));
+		CLOSING.transitionMap.put(Input.PHOTOCELL, new Transition(State.OPENING, Signal.MOTOR_START_OPENING));
 
-		STOPPED_WHILE_CLOSING.transitionMap.put(Input.BUTTON, State.OPENING);
-		STOPPED_WHILE_CLOSING.transitionMap.put(Input.PHOTOCELL, State.OPENING);
+		STOPPED_WHILE_CLOSING.transitionMap.put(Input.BUTTON, new Transition(State.OPENING, Signal.MOTOR_START_OPENING));
+		STOPPED_WHILE_CLOSING.transitionMap.put(Input.PHOTOCELL, new Transition(State.OPENING, Signal.MOTOR_START_OPENING));
 
-		CLOSED_LIGHT_ON.transitionMap.put(Input.BUTTON, State.OPENING);
-		CLOSED_LIGHT_ON.transitionMap.put(Input.TIMER, State.CLOSED_LIGHT_OFF);
+		CLOSED_LIGHT_ON.transitionMap.put(Input.BUTTON, new Transition(State.OPENING, Signal.MOTOR_START_OPENING));
+		CLOSED_LIGHT_ON.transitionMap.put(Input.TIMER, new Transition(State.CLOSED_LIGHT_OFF, Signal.LIGHT_OFF));
 
-		CLOSED_LIGHT_OFF.transitionMap.put(Input.BUTTON, State.OPENING);
+		CLOSED_LIGHT_OFF.transitionMap.put(Input.BUTTON, new Transition(State.OPENING, Signal.MOTOR_START_OPENING, Signal.LIGHT_ON));
 	}
 
 
@@ -57,17 +53,21 @@ public enum State {
 	/**
 	 * A map of transitions for the state.
 	 */
-	private HashMap<Input, State> transitionMap = new HashMap<>();
+	private HashMap<Input, Transition> transitionMap = new HashMap<>();
 
 	/**
-	 * Gets the next state for the specified {@link Input}. If no following state is defined for the {@code Input},
-	 * the {@link State#ERROR} state is returned.
+	 * Gets the next transition for the specified {@link Input}. If no following transition is defined for
+	 * the {@code Input}, a transition with no signals and {@code this} state is returned.
 	 *
 	 * @param input the input for the state
-	 * @return The defined state or {@link State#ERROR} if undefined.
+	 * @return The defined {@link Transition} or an empty one if undefined.
 	 */
-	public State getNextByInput(@NonNull final Input input) {
-		return transitionMap.computeIfAbsent(input, i -> State.ERROR);
+	public Transition getNextByInput(@NonNull final Input input) {
+		if (transitionMap.containsKey(input)) {
+			return transitionMap.get(input);
+		} else {
+			return new Transition(this);
+		}
 	}
 
 }

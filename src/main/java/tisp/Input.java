@@ -6,27 +6,27 @@ package tisp;
 public enum Input {
 
 	/**
-	 * The control button signal. Triggered when a user pushes the button.
+	 * The control button input. Triggered when a user pushes the button.
 	 */
 	BUTTON,
 
 	/**
-	 * The light timeout timer signal. Triggered when the timer runs out.
+	 * The light timeout timer input. Triggered when the timer runs out.
 	 */
 	TIMER,
 
 	/**
-	 * The upper trigger signal. Triggered when the door is fully open.
+	 * The upper trigger input. Triggered when the door is fully open.
 	 */
 	TRIGGER_UPPER,
 
 	/**
-	 * The lower trigger signal. Triggered when the door is fully closed.
+	 * The lower trigger input. Triggered when the door is fully closed.
 	 */
 	TRIGGER_LOWER,
 
 	/**
-	 * The photocell signal. Triggered by the photocell (e.g. when a car drives through while the door is closing).
+	 * The photocell input. Triggered by the photocell (e.g. when a car drives through while the door is closing).
 	 */
 	PHOTOCELL
 

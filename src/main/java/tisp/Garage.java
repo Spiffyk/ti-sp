@@ -39,10 +39,12 @@ public class Garage {
 	 * Sets a new state of the garage based on the specified input.
 	 *
 	 * @param input the input to use
-	 * @return the newly set state
+	 * @return the {@link Transition} for the specified {@link Input}
 	 */
-	public State signal(@NonNull final Input input) {
-		return this.currentState = this.currentState.getNextByInput(input);
+	public Transition input(@NonNull final Input input) {
+		final Transition transition = this.currentState.getNextByInput(input);
+		this.currentState = transition.getStateTo();
+		return transition;
 	}
 
 }

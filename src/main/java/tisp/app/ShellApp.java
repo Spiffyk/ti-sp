@@ -2,10 +2,12 @@ package tisp.app;
 
 import tisp.Garage;
 import tisp.Input;
+import tisp.Transition;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 /**
  * Shell-based application class.
@@ -76,8 +78,14 @@ public class ShellApp {
 				break;
 			}
 
-			System.out.println("(Input was " + input.name() + ")\n");
-			garage.signal(input);
+			System.out.println("(Input was " + input.name() + ")");
+			final Transition transition = garage.input(input);
+			if (transition.getSignals().length > 0) {
+				System.out.format("(Signals were: %s)\n", Arrays.toString(transition.getSignals()));
+			} else {
+				System.out.println("(No signals)");
+			}
+			System.out.println();
 		}
 	}
 
