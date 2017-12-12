@@ -23,7 +23,7 @@ public class ShellApp {
 		Garage garage = new Garage();
 		final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-		System.out.println("Type '?' and <ENTER> to show help");
+		System.out.println("Type '?' or 'H' and press <ENTER> to show help");
 
 		while(true) {
 			boolean exitRequested = false;
@@ -41,28 +41,30 @@ public class ShellApp {
 				final char c = Character.toUpperCase(s.charAt(0));
 				switch (c) {
 					case 'B':
-						input = Input.BUTTON;
+						input = Input.BTN;
 						break;
 					case 'U':
-						input = Input.TRIGGER_UPPER;
+						input = Input.T_UP;
 						break;
 					case 'L':
-						input = Input.TRIGGER_LOWER;
+						input = Input.T_BOT;
 						break;
 					case 'T':
-						input = Input.TIMER;
+						input = Input.TMR;
 						break;
 					case 'P':
-						input = Input.PHOTOCELL;
+						input = Input.PTC;
 						break;
 					case 'R':
 						System.out.println("Resetting the garage.");
 						garage = new Garage();
 						continue;
 					case 'X':
+					case 'Q':
 						exitRequested = true;
 						break;
 					case '?':
+					case 'H':
 						printHelp();
 						continue;
 					default:
@@ -98,15 +100,15 @@ public class ShellApp {
 				"\n" +
 				"Possible options:\n" +
 				"\n" +
-				"B - BUTTON input\n" +
-				"U - TRIGGER_UPPER input\n" +
-				"L - TRIGGER_LOWER input\n" +
-				"T - TIMER input\n" +
-				"P - PHOTOCELL input\n" +
+				"B - BTN (button) input\n" +
+				"U - T_UP (upper trigger) input\n" +
+				"L - T_BOT (lower trigger) input\n" +
+				"T - TMR (timer) input\n" +
+				"P - PTC (photocell) input\n" +
 				"\n" +
-				"R - resets the garage" +
-				"X - exits the application\n" +
-				"? - shows help\n"
+				"R - resets the garage\n" +
+				"X, Q - exits the application\n" +
+				"?, H - shows help\n"
 		);
 	}
 

@@ -8,26 +8,26 @@ public enum Input {
 	/**
 	 * The control button input. Triggered when a user pushes the button.
 	 */
-	BUTTON,
+	BTN,
 
 	/**
 	 * The light timeout timer input. Triggered when the timer runs out.
 	 */
-	TIMER,
+	TMR,
 
 	/**
 	 * The upper trigger input. Triggered when the door is fully open.
 	 */
-	TRIGGER_UPPER,
+	T_UP,
 
 	/**
 	 * The lower trigger input. Triggered when the door is fully closed.
 	 */
-	TRIGGER_LOWER,
+	T_BOT,
 
 	/**
 	 * The photocell input. Triggered by the photocell (e.g. when a car drives through while the door is closing).
 	 */
-	PHOTOCELL
+	PTC
 
 }

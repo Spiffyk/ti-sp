@@ -2,11 +2,11 @@ package tisp;
 
 public enum Signal {
 
-	MOTOR_STOP,
+	MOT_STOP,
 
-	MOTOR_START_OPENING,
+	MOT_OP,
 
-	MOTOR_START_CLOSING,
+	MOT_CL,
 
 	LIGHT_ON,
 

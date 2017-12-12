@@ -24,28 +24,28 @@ public enum State {
 
 
 	static {
-		OPEN_LIGHT_ON.transitionMap.put(Input.BUTTON, new Transition(State.CLOSING, Signal.MOTOR_START_CLOSING));
-		OPEN_LIGHT_ON.transitionMap.put(Input.TIMER, new Transition(State.OPEN_LIGHT_OFF, Signal.LIGHT_OFF));
+		OPEN_LIGHT_ON.transitionMap.put(Input.BTN, new Transition(State.CLOSING, Signal.MOT_CL));
+		OPEN_LIGHT_ON.transitionMap.put(Input.TMR, new Transition(State.OPEN_LIGHT_OFF, Signal.LIGHT_OFF));
 
-		OPEN_LIGHT_OFF.transitionMap.put(Input.BUTTON, new Transition(State.CLOSING, Signal.MOTOR_START_CLOSING, Signal.LIGHT_ON));
+		OPEN_LIGHT_OFF.transitionMap.put(Input.BTN, new Transition(State.CLOSING, Signal.MOT_CL, Signal.LIGHT_ON));
 
-		OPENING.transitionMap.put(Input.BUTTON, new Transition(State.STOPPED_WHILE_OPENING, Signal.MOTOR_STOP));
-		OPENING.transitionMap.put(Input.TRIGGER_UPPER, new Transition(State.OPEN_LIGHT_ON, Signal.MOTOR_STOP));
+		OPENING.transitionMap.put(Input.BTN, new Transition(State.STOPPED_WHILE_OPENING, Signal.MOT_STOP));
+		OPENING.transitionMap.put(Input.T_UP, new Transition(State.OPEN_LIGHT_ON, Signal.MOT_STOP));
 
-		STOPPED_WHILE_OPENING.transitionMap.put(Input.BUTTON, new Transition(State.CLOSING, Signal.MOTOR_START_CLOSING));
-		STOPPED_WHILE_OPENING.transitionMap.put(Input.PHOTOCELL, new Transition(State.OPENING, Signal.MOTOR_START_OPENING));
+		STOPPED_WHILE_OPENING.transitionMap.put(Input.BTN, new Transition(State.CLOSING, Signal.MOT_CL));
+		STOPPED_WHILE_OPENING.transitionMap.put(Input.PTC, new Transition(State.OPENING, Signal.MOT_OP));
 
-		CLOSING.transitionMap.put(Input.BUTTON, new Transition(State.STOPPED_WHILE_CLOSING, Signal.MOTOR_STOP));
-		CLOSING.transitionMap.put(Input.TRIGGER_LOWER, new Transition(State.CLOSED_LIGHT_ON, Signal.MOTOR_STOP));
-		CLOSING.transitionMap.put(Input.PHOTOCELL, new Transition(State.OPENING, Signal.MOTOR_START_OPENING));
+		CLOSING.transitionMap.put(Input.BTN, new Transition(State.STOPPED_WHILE_CLOSING, Signal.MOT_STOP));
+		CLOSING.transitionMap.put(Input.T_BOT, new Transition(State.CLOSED_LIGHT_ON, Signal.MOT_STOP));
+		CLOSING.transitionMap.put(Input.PTC, new Transition(State.OPENING, Signal.MOT_OP));
 
-		STOPPED_WHILE_CLOSING.transitionMap.put(Input.BUTTON, new Transition(State.OPENING, Signal.MOTOR_START_OPENING));
-		STOPPED_WHILE_CLOSING.transitionMap.put(Input.PHOTOCELL, new Transition(State.OPENING, Signal.MOTOR_START_OPENING));
+		STOPPED_WHILE_CLOSING.transitionMap.put(Input.BTN, new Transition(State.OPENING, Signal.MOT_OP));
+		STOPPED_WHILE_CLOSING.transitionMap.put(Input.PTC, new Transition(State.OPENING, Signal.MOT_OP));
 
-		CLOSED_LIGHT_ON.transitionMap.put(Input.BUTTON, new Transition(State.OPENING, Signal.MOTOR_START_OPENING));
-		CLOSED_LIGHT_ON.transitionMap.put(Input.TIMER, new Transition(State.CLOSED_LIGHT_OFF, Signal.LIGHT_OFF));
+		CLOSED_LIGHT_ON.transitionMap.put(Input.BTN, new Transition(State.OPENING, Signal.MOT_OP));
+		CLOSED_LIGHT_ON.transitionMap.put(Input.TMR, new Transition(State.CLOSED_LIGHT_OFF, Signal.LIGHT_OFF));
 
-		CLOSED_LIGHT_OFF.transitionMap.put(Input.BUTTON, new Transition(State.OPENING, Signal.MOTOR_START_OPENING, Signal.LIGHT_ON));
+		CLOSED_LIGHT_OFF.transitionMap.put(Input.BTN, new Transition(State.OPENING, Signal.MOT_OP, Signal.LIGHT_ON));
 	}
 
 
