@@ -10,5 +10,7 @@ public enum Signal {
 
 	LIGHT_ON,
 
-	LIGHT_OFF;
+	LIGHT_OFF,
+
+	TIMER;
 }

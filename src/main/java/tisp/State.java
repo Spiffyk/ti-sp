@@ -30,13 +30,13 @@ public enum State {
 		OPEN_LIGHT_OFF.transitionMap.put(Input.BTN, new Transition(State.CLOSING, Signal.MOT_CL, Signal.LIGHT_ON));
 
 		OPENING.transitionMap.put(Input.BTN, new Transition(State.STOPPED_WHILE_OPENING, Signal.MOT_STOP));
-		OPENING.transitionMap.put(Input.T_UP, new Transition(State.OPEN_LIGHT_ON, Signal.MOT_STOP));
+		OPENING.transitionMap.put(Input.T_UP, new Transition(State.OPEN_LIGHT_ON, Signal.MOT_STOP, Signal.TIMER));
 
 		STOPPED_WHILE_OPENING.transitionMap.put(Input.BTN, new Transition(State.CLOSING, Signal.MOT_CL));
 		STOPPED_WHILE_OPENING.transitionMap.put(Input.PTC, new Transition(State.OPENING, Signal.MOT_OP));
 
 		CLOSING.transitionMap.put(Input.BTN, new Transition(State.STOPPED_WHILE_CLOSING, Signal.MOT_STOP));
-		CLOSING.transitionMap.put(Input.T_BOT, new Transition(State.CLOSED_LIGHT_ON, Signal.MOT_STOP));
+		CLOSING.transitionMap.put(Input.T_BOT, new Transition(State.CLOSED_LIGHT_ON, Signal.MOT_STOP, Signal.TIMER));
 		CLOSING.transitionMap.put(Input.PTC, new Transition(State.OPENING, Signal.MOT_OP));
 
 		STOPPED_WHILE_CLOSING.transitionMap.put(Input.BTN, new Transition(State.OPENING, Signal.MOT_OP));
