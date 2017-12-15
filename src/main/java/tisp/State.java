@@ -12,17 +12,49 @@ import java.util.HashMap;
 @ToString
 public enum State {
 
+	/**
+	 * State where the garage is open and the light inside is on.
+	 */
 	OPEN_LIGHT_ON,
+
+	/**
+	 * State where the garage is open and the light inside is of.
+	 */
 	OPEN_LIGHT_OFF,
+
+	/**
+	 * State where the garage is in the process of being opened.
+	 */
 	OPENING,
+
+	/**
+	 * State where the garage was stopped while opening.
+	 */
 	STOPPED_WHILE_OPENING,
+
+	/**
+	 * State where the garage is in the process of being closed.
+	 */
 	CLOSING,
+
+	/**
+	 * State where the garage was stopped while closing.
+	 */
 	STOPPED_WHILE_CLOSING,
+
+	/**
+	 * State where the garage is closed and the light inside is on.
+	 */
 	CLOSED_LIGHT_ON,
+
+	/**
+	 * State where the garage is closed and the light inside is of.
+	 */
 	CLOSED_LIGHT_OFF;
 
 
 
+	// Initialization block of the transition table.
 	static {
 		OPEN_LIGHT_ON.transitionMap.put(Input.BTN, new Transition(State.CLOSING, Signal.MOT_CL));
 		OPEN_LIGHT_ON.transitionMap.put(Input.TMR, new Transition(State.OPEN_LIGHT_OFF, Signal.LIGHT_OFF));

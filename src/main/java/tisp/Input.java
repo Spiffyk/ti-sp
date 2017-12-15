@@ -1,7 +1,7 @@
 package tisp;
 
 /**
- * The input signals for the garage door control automaton.
+ * The inputs for the garage door control automaton.
  */
 public enum Input {
 
